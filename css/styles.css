@@ -1637,7 +1637,7 @@ section {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #61c57a 25%, #4a965d 50%, #61c57a 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
   border-radius: 8px;
@@ -1646,7 +1646,7 @@ section {
 .skeleton-card {
   padding: 20px;
   border-radius: 20px;
-  background: white;
+  background: #7e7e7e;
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   width: 280px; /* Добавил, чтобы карточки были как настоящие */
 }
