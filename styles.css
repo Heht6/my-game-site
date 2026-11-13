@@ -1,0 +1,1670 @@
+/* ===== Стили для карточек (из нового задания) ===== */
+
+/* Контейнер для карточек */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Каждая карточка */
+.game-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px 20px;
+    width: 280px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-left: 6px solid #3498db;
+    cursor: default;
+}
+
+/* Эффект при наведении на карточку (mouseover) */
+.game-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.15);
+    border-left-color: #e74c3c;
+}
+
+.game-title {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 6px;
+}
+
+.game-short {
+    font-size: 0.95rem;
+    color: #7f8c8d;
+    margin-bottom: 15px;
+}
+
+/* Кнопка "Подробнее" */
+.details-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    width: 100%;
+}
+
+.details-btn:hover {
+    background: #2980b9;
+    transform: scale(1.02);
+}
+
+/* Блок с деталями (скрыт по умолчанию) */
+.details {
+    margin-top: 18px;
+    padding: 15px;
+    background: #ecf0f1;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: #2c3e50;
+    line-height: 1.6;
+    display: none; /* скрыты по умолчанию */
+}
+
+.details p {
+    margin-bottom: 6px;
+}
+
+.details strong {
+    color: #2c3e50;
+}
+
+/* ========================================== */
+/* КАРТОЧКИ ИГР (данные из Firestore)        */
+/* ========================================== */
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.game-card {
+    background: #535353;       /* Темный фон карточки */
+    border-radius: 20px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-left: 6px solid #479467; /* Зеленая полоса слева */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 30px rgba(46, 204, 113, 0.2); /* Зеленое свечение при наведении */
+    border-left-color: #27ae60;
+}
+
+/* Короткое описание жанра сделаем чуть светлее */
+.game-short {
+    color: #bdc3c7; 
+}
+
+
+.game-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Обложка в карточке дневника (квадратная) */
+.diary-card .game-image {
+    height: auto;         
+    aspect-ratio: 1 / 1;  
+    object-fit: cover;    
+    border-radius: 12px;
+    margin-bottom: 15px;
+    background-color: #2b2b2b;
+}
+
+/* Обложка в карусели "Сейчас играю" */
+.now-playing-card .cover {
+    width: 80px;
+    height: 80px;         
+    aspect-ratio: 1 / 1;
+    object-fit: cover;    
+    border-radius: 10px;
+    flex-shrink: 0;
+    background-color: #2b2b2b;
+}
+
+.game-title {
+    font-size: 1.4rem;
+    color: #4d9e61;
+    margin-bottom: 10px;
+}
+
+.game-short {
+    font-size: 0.95rem;
+    color: #4d9e61;
+    margin-bottom: 8px;
+}
+
+.game-rating {
+    font-size: 1rem;
+    color: #e67e22;
+    font-weight: bold;
+}
+
+/* Сообщение о загрузке */
+#loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+/* ========================================== */
+/* ФОРМА ДОБАВЛЕНИЯ ИГРЫ                      */
+/* ========================================== */
+
+.add-game-section {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #61c57a;       
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid #2c2c2c;  
+}
+
+/* Делаем подписи к полям (label) белыми */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;            
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+
+.add-game-section h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #bdc3c7;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* ========================================== */
+/* МОДАЛЬНОЕ ОКНО РЕДАКТИРОВАНИЯ              */
+/* ========================================== */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex; 
+}
+
+.modal-window {
+    background: #61c57a;       
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    border: 1px solid #2c2c2c;
+    animation: modalAppear 0.3s ease;
+}
+
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-window h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancel-btn,
+.save-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cancel-btn {
+    background: #ecf0f1;
+    color: #2c3e50;
+}
+
+.cancel-btn:hover {
+    background: #bdc3c7;
+}
+
+.save-btn {
+    background: #27ae60;
+    color: white;
+}
+
+.save-btn:hover {
+    background: #229954;
+}
+
+/* ========================================== */
+/* КНОПКИ УПРАВЛЕНИЯ НА КАРТОЧКАХ             */
+/* ========================================== */
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ecf0f1;
+}
+
+.edit-btn,
+.delete-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.edit-btn {
+    background: #f39c12;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+}
+
+/* Стили для всех инпутов внутри обеих форм */
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #2c2c2c;
+    background-color: #2b2b2b;
+    color: #c2c2c2;            
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: inherit;
+}
+
+.form-group input::placeholder {
+    color: #858585; 
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2ecc71;     
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+}
+
+/* ========================================== */
+/* НАВИГАЦИЯ С КНОПКОЙ ВОЙТИ                  */
+/* ========================================== */
+
+.main-nav {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;            
+    background-color: #61c57a;      
+    padding: 0 30px;
+    margin: 0;
+}
+
+.nav-list {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    gap: 70px;
+}
+
+.nav-list li a {
+    display: block;
+    padding: 15px 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-list li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Кнопка "Войти" */
+.login-btn {
+    padding: 10px 25px;
+    background: white;
+    color: #333;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Профиль пользователя */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-name {
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.logout-btn-small {
+    padding: 8px 18px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn-small:hover {
+    background: #c0392b;
+}
+
+/* ========================================== */
+/* МОДАЛЬНОЕ ОКНО АУТЕНТИФИКАЦИИ              */
+/* ========================================== */
+
+.auth-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+}
+
+.auth-modal.active {
+    display: flex;
+}
+
+.auth-modal-window {
+    background: white;
+    padding: 40px 35px;
+    border-radius: 25px;
+    max-width: 450px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalAppear 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Кнопка закрытия */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    color: #7f8c8d;
+    cursor: pointer;
+    transition: 0.3s;
+    line-height: 1;
+    padding: 5px;
+}
+
+.modal-close:hover {
+    color: #e74c3c;
+    transform: rotate(90deg);
+}
+
+/* Заголовок */
+.auth-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+}
+
+/* Вкладки */
+.auth-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #7f8c8d;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+    margin-bottom: -2px;
+}
+
+.auth-tab.active {
+    color: #3498db;
+    border-bottom-color: #3498db;
+}
+
+.auth-tab:hover {
+    color: #3498db;
+}
+
+/* Формы */
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form .form-group {
+    margin-bottom: 18px;
+}
+
+.auth-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.auth-form .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: 0.3s;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.auth-form .form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .nav-list {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .login-btn {
+        width: 100%;
+    }
+    
+    .auth-modal-window {
+        padding: 30px 20px;
+    }
+}
+
+/* ========================================== */
+/* ЛИДЕРБОРД (ТАБЛИЦА РЕКОРДОВ)               */
+/* ========================================== */
+
+.leaderboard-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #61c57a;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-section h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2rem;
+}
+
+.score-form {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #80ff9f;
+    border-radius: 15px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+}
+
+.score-btn {
+    padding: 12px 20px;
+    background: #27ae60;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.score-btn:hover {
+    background: #229954;
+    transform: translateY(-2px);
+}
+
+.leaderboard-filter {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #80ff9f;
+    border-radius: 10px;
+}
+
+.leaderboard-filter label {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.leaderboard-filter select {
+    padding: 8px 15px;
+    border: 2px solid #bdc3c7;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.leaderboard-table-wrapper {
+    overflow-x: auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.leaderboard-table thead {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+
+.leaderboard-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.leaderboard-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ecf0f1;
+    color: #2c3e50;
+}
+
+.leaderboard-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.leaderboard-table tbody tr:nth-child(1) {
+    background: linear-gradient(90deg, #fff9e6 0%, #ffffff 100%);
+    font-weight: 600;
+}
+
+.leaderboard-table tbody tr:nth-child(2) {
+    background: linear-gradient(90deg, #f5f5f5 0%, #ffffff 100%);
+}
+
+.leaderboard-table tbody tr:nth-child(3) {
+    background: linear-gradient(90deg, #fdf0e6 0%, #ffffff 100%);
+}
+
+/* ========================================== */
+/* АДМИН-ПАНЕЛЬ                               */
+/* ========================================== */
+
+.admin-stats {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #61c57a;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.admin-stats h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    padding: 25px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: #ffffff;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.admin-table-section {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #61c57a;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table-section h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.admin-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-btn.export {
+    background: #27ae60;
+    color: #ffffff;
+}
+
+.admin-btn.refresh {
+    background: #3498db;
+    color: #ffffff;
+}
+
+.admin-btn.logout {
+    background: #e74c3c;
+    color: #ffffff;
+    padding: 12px 25px;
+}
+
+.admin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.admin-table-wrapper {
+    overflow-x: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.admin-table thead {
+    background: #2c3e50;
+    color: #ffffff;
+}
+
+.admin-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.admin-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ecf0f1;
+    color: #2c3e50;
+}
+
+.admin-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.admin-actions-cell {
+    display: flex;
+    gap: 8px;
+}
+
+.mini-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.mini-btn.edit {
+    background: #f39c12;
+    color: white;
+}
+
+.mini-btn.delete {
+    background: #e74c3c;
+    color: white;
+}
+
+.mini-btn:hover {
+    transform: scale(1.05);
+}
+
+.admin-user {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px 30px;
+    background: #61c57a;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ========================================== */
+/* ИГРОВОЙ ДНЕВНИК — ЛИЧНЫЙ                   */
+/* ========================================== */
+
+/* Гостевой блок */
+.diary-guest {
+    text-align: center;
+    padding: 80px 20px;
+    color: #c2c2c2;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.diary-guest h2 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+.diary-guest p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Панель: заголовок + кнопка */
+.diary-toolbar {
+    max-width: 1200px;
+    margin: 40px auto 20px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.diary-toolbar h2 {
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+/* Вкладки-фильтры */
+.diary-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 0 20px;
+    justify-content: center;
+}
+.diary-tab {
+    padding: 10px 20px;
+    background: #535353;
+    color: #c2c2c2;
+    border: 2px solid #2c2c2c;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+.diary-tab:hover {
+    transform: translateY(-2px);
+    background: #5f5f5f;
+}
+.diary-tab.active {
+    background: #479467;
+    color: white;
+    border-color: #27ae60;
+    box-shadow: 0 4px 12px rgba(71, 148, 103, 0.4);
+}
+
+/* Сортировка */
+.diary-sort {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-end;
+}
+.diary-sort select {
+    padding: 10px 15px;
+    background: #2b2b2b;
+    color: #c2c2c2;
+    border: 2px solid #2c2c2c;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+/* Карусель "Сейчас играю" */
+.diary-now-playing-carousel {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.now-playing-card {
+    min-width: 560px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #535353, #3a3a3a);
+    border-left: 6px solid #3498db;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.now-playing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(52, 152, 219, 0.3);
+    border-left-color: #27ae60;
+}
+
+.now-playing-card .info {
+    flex: 1;
+    min-width: 0;
+}
+
+.now-playing-card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.now-playing-card .meta {
+    color: #bdc3c7;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.now-playing-card .diary-progress {
+    height: 8px;
+    background: #2c2c2c;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.now-playing-card .diary-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3498db, #27ae60);
+    transition: width 0.5s;
+}
+
+.now-playing-card .diary-progress-label {
+    color: #c2c2c2;
+    font-size: 0.75rem;
+    margin-top: 4px;
+}
+
+/* Карточки дневника */
+.diary-card {
+    position: relative;
+}
+.diary-card .diary-status-badge {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 2;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.diary-status-badge.playing   { background: #3498db; }
+.diary-status-badge.completed { background: #27ae60; }
+.diary-status-badge.dropped   { background: #e74c3c; }
+.diary-status-badge.backlog   { background: #f39c12; }
+.diary-status-badge.wishlist  { background: #9b59b6; }
+
+.diary-card .diary-meta {
+    font-size: 0.85rem;
+    color: #bdc3c7;
+    margin: 8px 0;
+    line-height: 1.4;
+}
+.diary-card .diary-rating-big {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f39c12;
+    display: inline-block;
+    margin-right: 15px;
+}
+.diary-card .diary-hours {
+    color: #3498db;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-block;
+}
+.diary-card .diary-card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+.diary-card .diary-card-actions button {
+    flex: 1;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.diary-card .btn-view   { background: #3498db; color: white; }
+.diary-card .btn-edit   { background: #f39c12; color: white; }
+.diary-card .btn-delete { background: #e74c3c; color: white; }
+.diary-card .diary-card-actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Пустое состояние */
+.diary-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #c2c2c2;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.diary-empty h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Ползунок рейтинга */
+.diary-rating-slider {
+    width: 100%;
+    accent-color: #27ae60;
+    height: 6px;
+}
+
+/* Модалка просмотра */
+#diary-view-body h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+#diary-view-body .view-meta {
+    background: rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+#diary-view-body .view-meta p {
+    margin: 6px 0;
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+#diary-view-body .view-meta strong {
+    color: #1a252f;
+}
+#diary-view-body .view-notes {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+    line-height: 1.6;
+    color: #2c3e50;
+    white-space: pre-wrap;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .diary-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* Счётчик на вкладках */
+.diary-tab .tab-count {
+    font-weight: 800;
+    margin-right: 6px;
+    color: #ffffff;
+}
+/* Если вкладка не активна, цифра чуть тусклее */
+.diary-tab:not(.active) .tab-count {
+    color: #a0a0a0;
+}
+
+/* Ограничиваем высоту окна добавления игры и включаем прокрутку */
+.diary-edit-modal-window {
+    max-height: 90vh; /* Окно не будет выше 90% высоты экрана */
+    display: flex;
+    flex-direction: column;
+}
+
+.diary-edit-modal-window form {
+    overflow-y: auto; /* Включаем вертикальную прокрутку для содержимого формы */
+    padding-right: 10px; /* Немного отступа, чтобы скроллбар не прилипал к полям */
+    margin-right: -10px; /* Компенсируем отступ, чтобы форма не сужалась */
+}
+
+/* Делаем скроллбар тёмным и аккуратным */
+.diary-edit-modal-window form::-webkit-scrollbar {
+    width: 8px;
+}
+.diary-edit-modal-window form::-webkit-scrollbar-track {
+    background: #479467;
+    border-radius: 4px;
+}
+.diary-edit-modal-window form::-webkit-scrollbar-thumb {
+    background: #2b2b2b;
+    border-radius: 4px;
+}
+.diary-edit-modal-window form::-webkit-scrollbar-thumb:hover {
+    background: #1a1a1a;
+}
+
+/* Чуть уменьшаем отступы между полями, чтобы форма была компактнее */
+.diary-edit-modal-window .form-group {
+    margin-bottom: 15px;
+}
+
+/* Окно становится точкой отсчёта для крестика */
+.diary-edit-modal-window {
+    position: relative;
+}
+
+/* Крестик получает чёткие размеры и возвращается в угол окна */
+#diary-modal-close {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#diary-modal-close:hover {
+    color: #e74c3c;
+    transform: rotate(90deg);
+}
+
+/* ========================================================= */
+/* ПАНЕЛЬ ФИЛЬТРОВ */
+/* ========================================================= */
+.filters-section {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #535353;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-left: 6px solid #479467;
+}
+
+.filters-section h2 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 25px;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  margin-bottom: 8px;
+  color: #c2c2c2;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 10px 12px;
+  background: #2b2b2b;
+  color: #c2c2c2;
+  border: 2px solid #2c2c2c;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.filter-group input::placeholder {
+  color: #858585;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+  outline: none;
+  border-color: #2ecc71;
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+}
+
+.filters-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 20px;
+  border-top: 1px solid #2c2c2c;
+}
+
+.reset-btn {
+  padding: 10px 20px;
+  background: #479467;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.reset-btn:hover {
+  background: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(71, 148, 103, 0.4);
+}
+
+.results-count {
+  color: #c2c2c2;
+  font-weight: 600;
+}
+
+/* =========================================== */
+/* АДАПТИВНОСТЬ */
+/* =========================================== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Мобильные */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  /* Навигация — вертикальная */
+  ul {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  /* Карточки — в одну колонку */
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Фильтры — в одну колонку */
+  .filters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Формы — в одну колонку */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Таблицы — прокрутка */
+  .leaderboard-table-wrapper,
+  .admin-table-wrapper {
+    overflow-x: auto;
+  }
+
+  /* Статистика — в одну колонку */
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Модальное окно */
+  .modal-window {
+    width: 95%;
+    padding: 20px;
+  }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .game-card {
+    width: 100%;
+  }
+
+  .auth-section,
+  .add-game-section {
+    padding: 20px;
+  }
+}
+
+/* ===================================================== */
+/* БУРГЕР-МЕНЮ                                          */
+/* ===================================================== */
+.burger-toggle {
+  display: none;
+}
+
+.burger-label {
+  display: none;
+  padding: 15px;
+  background: #57af6d;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* Настройки для мобильных экранов */
+@media (max-width: 768px) {
+  .burger-label {
+    display: block; /* Показываем кнопку */
+  }
+
+  /* Скрываем навигацию по умолчанию */
+  .main-nav {
+    display: none;
+  }
+
+  /* Показываем навигацию, когда чекбокс нажат */
+  .burger-toggle:checked ~ .main-nav {
+    display: flex;
+    flex-direction: column; /* Выстраиваем элементы в колонку */
+  }
+
+  /* Делаем список вертикальным */
+  .nav-list {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    gap: 10px;
+  }
+}
+
+/* ========================================================= */
+/* АНИМАЦИИ */
+/* ========================================================= */
+
+/* Появление карточек */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.game-card {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Задержка для каждой карточки */
+.game-card:nth-child(1) { animation-delay: 0.1s; }
+.game-card:nth-child(2) { animation-delay: 0.2s; }
+.game-card:nth-child(3) { animation-delay: 0.3s; }
+.game-card:nth-child(4) { animation-delay: 0.4s; }
+.game-card:nth-child(5) { animation-delay: 0.5s; }
+.game-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Пульсация кнопки */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.details-btn:hover {
+  animation: pulse 0.5s infinite;
+}
+
+/* Появление модального окна */
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-window {
+  animation: modalAppear 0.3s ease;
+}
+
+/* Плавное исчезновение при удалении */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+.game-card.removing {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+/* Плавные переходы для ссылок */
+a {
+  transition: color 0.3s, background-color 0.3s;
+}
+
+/* Плавное появление секций */
+section {
+  animation: fadeInUp 0.6s ease;
+}
+
+/* Когда чекбокс нажат (checked), показываем меню, которое идет сразу после него */
+.burger-toggle:checked ~ .main-nav {
+  display: block;
+}
+
+/* Скрываем сам стандартный квадратный чекбокс, оставляя только красивую кнопку-label */
+.burger-toggle {
+  display: none;
+}
+
+/* ============================================== */
+/* SKELETON SCREENS */
+/* ============================================== */
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 8px;
+}
+
+.skeleton-card {
+  padding: 20px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  width: 280px; /* Добавил, чтобы карточки были как настоящие */
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 15px;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 70%;
+  margin-bottom: 10px;
+}
+
+.skeleton-text {
+  height: 16px;
+  width: 100%;
+  margin-bottom: 8px;
+}

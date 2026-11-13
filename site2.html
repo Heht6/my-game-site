@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вторая страница</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav class="main-nav">
+    <ul class="nav-list">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="site2.html">Игры</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="gaming_diary.html">Игровой дневник</a></li>
+        <li><a href="admin.html">Административная панель</a></li>
+    </ul>
+        <!-- Кнопка "Войти" (показывается, если не авторизован) -->
+        <button id="login-btn" class="login-btn">🔐 Войти</button>
+    
+    <!-- Профиль пользователя (показывается, если авторизован) -->
+    <div id="user-menu" class="user-menu" style="display: none;">
+        <span id="user-display-name" class="user-name">Пользователь</span>
+         <button id="logout-btn" class="logout-btn-small">Выйти</button>
+    </div>
+</nav>
+
+<!-- ============================================ -->
+<!-- ПОДКЛЮЧАЕМ FIREBASE                          -->
+<!-- ============================================ -->
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+    import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
+    import { getAuth } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBQGoZnd5wzP-MtWG6Ck3C21eKMzSETegk",
+        authDomain: "mygamesite-1b296.firebaseapp.com",
+        projectId: "mygamesite-1b296",
+        storageBucket: "mygamesite-1b296.firebasestorage.app",
+        messagingSenderId: "441398229161",
+        appId: "1:441398229161:web:63858bfac2c949577851b8",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);         // ← ДОБАВИЛИ
+
+    console.log('✅ Firebase подключен!');
+    console.log('📊 Project ID:', firebaseConfig.projectId);
+    console.log('🔥 Firestore готов!');
+    console.log('🔐 Auth готов!');
+
+    window.firebaseConfig = firebaseConfig;
+    window.db = db;
+    window.auth = auth;                // ← ДОБАВИЛИ
+    window.firebaseReady = true;
+</script>
+
+    <h1>Это вторая страница</h1>
+    
+<!-- Контейнер для карточек, который мы стилизовали в CSS -->
+<div class="card-container">
+
+    <!-- Карточка 1 -->
+    <div class="game-card">
+        <h3>Cyberpunk 2077</h3>
+        <img src="Cyberpunk 2077.jpg"  width="230">
+        <p>Ролевой экшен в открытом мире</p>
+        <button class="details-btn">Подробнее</button>
+        <div class="details" style="display: none;">
+            <p>Жанр: RPG</p>
+            <p>Рейтинг: 8.7/10</p>
+        </div>
+    </div>
+
+    <!-- Карточка 2 -->
+    <div class="game-card">
+        <h3>Hades</h3>
+        <img src="Hades.jpg"  width="230">
+        <p>Захватывающий экшен-роглайк</p>
+        <button class="details-btn">Подробнее</button>
+        <div class="details" style="display: none;">
+            <p>Жанр: Rogue-like</p>
+            <p>Рейтинг: 9.0/10</p>
+        </div>
+    </div>
+
+    <!-- Карточка 3 -->
+    <div class="game-card">
+        <h3>Minecraft</h3>
+        <img src="Minecraft.jpg"  width="230">
+        <p>Легендарная строительная песочница</p>
+        <button class="details-btn">Подробнее</button>
+        <div class="details" style="display: none;">
+            <p>Жанр: Песочница</p>
+            <p>Рейтинг: 9.3/10</p>
+        </div>
+    </div>
+
+    <!-- Карточка 4 -->
+    <div class="game-card">
+        <h3>Ведьмак 3</h3>
+        <img src="Ведьмак 3.jpg"  width="230">
+        <p>ролевая игра в мире тёмного фэнтези, где вы играете за ведьмака Геральта из Ривии</p>
+        <button class="details-btn">Подробнее</button>
+        <div class="details" style="display: none;">
+            <p>Жанр: action/RPG</p>
+            <p>Рейтинг: 9.2/10</p>
+        </div>
+    </div>
+
+    <!-- Карточка 5 -->
+    <div class="game-card">
+        <h3>Counter-Strike 2</h3>
+        <img src="Counter-Strike 2.jpg"  width="230">
+        <p>ремейк культовой cs:go</p>
+        <button class="details-btn">Подробнее</button>
+        <div class="details" style="display: none;">
+            <p>Жанр: First-Person Shooter</p>
+            <p>Рейтинг: 8.2/10</p>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО АУТЕНТИФИКАЦИИ -->
+<div id="auth-modal" class="modal-overlay">
+    <div class="modal-window">
+        <!-- Кнопка закрытия окна (крестик) -->
+        <button id="modal-close" class="modal-close-btn">✕</button>
+
+        <h2>🔐 Добро пожаловать!</h2>
+
+        <!-- Переключатели вкладок -->
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">Вход</button>
+            <button class="auth-tab" data-tab="register">Регистрация</button>
+        </div>
+
+        <!-- ФОРМА ВХОДА -->
+        <form id="login-form" class="auth-form active">
+            <div class="form-group">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" required placeholder="example@mail.com">
+            </div>
+            <div class="form-group">
+                <label for="login-password">Пароль:</label>
+                <input type="password" id="login-password" required placeholder="Введите пароль">
+            </div>
+            <button type="submit" class="auth-btn">Войти</button>
+        </form>
+
+        <!-- ФОРМА РЕГИСТРАЦИИ -->
+        <form id="register-form" class="auth-form">
+            <div class="form-group">
+                <label for="register-name">Имя:</label>
+                <input type="text" id="register-name" required placeholder="Ваше имя">
+            </div>
+            <div class="form-group">
+                <label for="register-email">Email:</label>
+                <input type="email" id="register-email" required placeholder="example@mail.com">
+            </div>
+            <div class="form-group">
+                <label for="register-password">Пароль (мин. 6 символов):</label>
+                <input type="password" id="register-password" required placeholder="Придумайте пароль">
+            </div>
+            <button type="submit" class="auth-btn">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!-- Подключаем JavaScript перед закрывающим тегом body -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

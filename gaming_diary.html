@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой игровой дневник</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- НАВИГАЦИЯ -->
+<nav class="main-nav">
+    <ul class="nav-list">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="site2.html">Игры</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="gaming_diary.html">Игровой дневник</a></li>
+        <li><a href="admin.html">Административная панель</a></li>
+    </ul>
+    <button id="login-btn" class="login-btn">🔐 Войти</button>
+    <div id="user-menu" class="user-menu" style="display: none;">
+        <span id="user-display-name" class="user-name">Пользователь</span>
+        <button id="logout-btn" class="logout-btn-small">Выйти</button>
+    </div>
+</nav>
+
+<!-- ============================================== -->
+<!-- БЛОК ДЛЯ ГОСТЯ (не авторизован)                -->
+<!-- ============================================== -->
+<div id="diary-guest" class="diary-guest" style="display: none;">
+    <h2>📔 Личный игровой дневник</h2>
+    <p>Войдите, чтобы вести свой дневник прохождений.<br>
+       Ваши записи видны только вам.</p>
+    <button id="guest-login-btn" class="login-btn" style="margin-top: 20px;">
+        🔐 Войти
+    </button>
+</div>
+
+<!-- ============================================== -->
+<!-- ОСНОВНОЙ БЛОК (авторизован)                    -->
+<!-- ============================================== -->
+<div id="diary-content" style="display: none;">
+
+    <!-- Заголовок -->
+    <h1 style="text-align: center; margin: 30px 0; color: #ffffff;">
+        📔 Мой игровой дневник
+    </h1>
+
+    <!-- Статистика -->
+    <section class="admin-stats">
+        <h2>📊 Статистика</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-total">0</div>
+                <div class="stat-label">Всего записей</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-completed">0</div>
+                <div class="stat-label">Пройдено</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-avg-rating">—</div>
+                <div class="stat-label">Средняя оценка</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-hours">0ч</div>
+                <div class="stat-label">Всего сыграно</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-spent">0 ₽</div>
+                <div class="stat-label">Потрачено</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок «Сейчас играю» -->
+    <section id="diary-now-playing-section" style="display: none; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+    <h2 style="color: #ffffff; margin-bottom: 15px;">🎮 Сейчас играю</h2>
+    <div id="diary-now-playing-list" class="diary-now-playing-carousel">
+        <!-- сюда будут рендериться мини-карточки -->
+    </div>
+    </section>
+
+    <!-- Заголовок + кнопка добавить -->
+    <div class="diary-toolbar">
+        <h2 style="color: #ffffff;">🎮 Мои записи</h2>
+        <button id="add-entry-btn" class="submit-btn" style="max-width: 260px;">
+            ➕ Добавить запись
+        </button>
+    </div>
+
+    <!-- Фильтры -->
+    <div class="diary-tabs" id="diary-tabs">
+        <button class="diary-tab active" data-status="all">Все</button>
+        <button class="diary-tab" data-status="playing">🎮 Играю</button>
+        <button class="diary-tab" data-status="completed">✅ Пройдено</button>
+        <button class="diary-tab" data-status="dropped">❌ Брошено</button>
+        <button class="diary-tab" data-status="backlog">📦 Отложено</button>
+        <button class="diary-tab" data-status="wishlist">💭 В планах</button>
+    </div>
+
+    <!-- Сортировка -->
+    <div class="diary-sort">
+        <label for="diary-sort-select" style="color: #c2c2c2;">Сортировать:</label>
+        <select id="diary-sort-select">
+            <option value="title">По названию</option>
+            <option value="updated">По дате обновления</option>
+            <option value="rating">По оценке</option>
+            <option value="playtime">По времени</option>
+        </select>
+    </div>
+
+    <!-- Сетка карточек -->
+    <div id="diary-list" class="card-container">
+        <!-- карточки отрисуются через JS -->
+    </div>
+
+    <!-- Пустое состояние -->
+    <div id="diary-empty" class="diary-empty" style="display: none;">
+        <h3>📭 Пока нет записей</h3>
+        <p>Нажмите «Добавить запись», чтобы начать свой дневник!</p>
+    </div>
+
+</div>
+
+<!-- ============================================== -->
+<!-- МОДАЛКА ДОБАВЛЕНИЯ / РЕДАКТИРОВАНИЯ             -->
+<!-- ============================================== -->
+<div id="diary-edit-modal" class="modal-overlay">
+    <div class="modal-window diary-edit-modal-window" style="max-width: 640px;">
+        <button id="diary-modal-close" class="modal-close-btn" style="width: 30px; height: 30px; padding: 0; background: transparent; font-size: 1.5rem; position: absolute; top: 15px; right: 15px; border: none; cursor: pointer; z-index: 10;">✕</button>
+        <h2 id="diary-modal-title">➕ Новая запись</h2>
+
+        <form id="diary-form">
+            <input type="hidden" id="diary-id" value="">
+
+            <div class="form-group">
+                <label for="diary-title">Название игры *</label>
+                <input type="text" id="diary-title" required placeholder="Например: Elden Ring">
+            </div>
+
+            <div class="form-group">
+                <label for="diary-genre">Жанр</label>
+                <input type="text" id="diary-genre" placeholder="RPG, Souls-like...">
+            </div>
+
+            <div class="form-group">
+                <label for="diary-platform">Платформа</label>
+                <select id="diary-platform">
+                    <option value="">— не выбрано —</option>
+                    <option value="PC">PC</option>
+                    <option value="PS5">PS5</option>
+                    <option value="PS4">PS4</option>
+                    <option value="Xbox Series">Xbox Series</option>
+                    <option value="Xbox One">Xbox One</option>
+                    <option value="Switch">Nintendo Switch</option>
+                    <option value="Mobile">Mobile</option>
+                    <option value="Retro">Retro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="diary-cover">Ссылка на обложку</label>
+                <input type="url" id="diary-cover" placeholder="https://...">
+            </div>
+
+            <div class="form-group">
+                <label for="diary-status">Статус *</label>
+                <select id="diary-status" required>
+                    <option value="playing">🎮 Играю</option>
+                    <option value="completed">✅ Пройдено</option>
+                    <option value="dropped">❌ Брошено</option>
+                    <option value="backlog">📦 Отложено</option>
+                    <option value="wishlist">💭 В планах</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="diary-rating">Оценка: <span id="diary-rating-value">—</span></label>
+                <input type="range" id="diary-rating" min="0" max="10" step="0.5" value="0"
+                       class="diary-rating-slider">
+            </div>
+
+            <div class="form-group">
+                <label for="diary-progress">Прогресс: <span id="diary-progress-value">0</span>%</label>
+                <input type="range" id="diary-progress" min="0" max="100" step="5" value="0"
+                       class="diary-rating-slider">
+            </div>
+
+            <div class="form-group">
+                <label for="diary-started">Дата начала</label>
+                <input type="date" id="diary-started">
+            </div>
+
+            <div class="form-group">
+                <label for="diary-finished">Дата завершения</label>
+                <input type="date" id="diary-finished">
+            </div>
+
+            <div class="form-group">
+                <label for="diary-playtime">Часов сыграно</label>
+                <input type="number" id="diary-playtime" min="0" step="0.5" placeholder="0">
+            </div>
+
+            <div class="form-group">
+                <label for="diary-price">Цена (₽)</label>
+                <input type="number" id="diary-price" min="0" step="1" placeholder="0">
+            </div>
+
+            <div class="form-group">
+                <label for="diary-notes">Заметки</label>
+                <textarea id="diary-notes" rows="4"
+                          style="width:100%; padding:12px 15px; border-radius:10px;
+                                 background:#2b2b2b; color:#c2c2c2;
+                                 border:2px solid #2c2c2c; font-family:inherit;
+                                 font-size:1rem; resize:vertical;"
+                          placeholder="Ваши мысли об игре..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">💾 Сохранить</button>
+        </form>
+    </div>
+</div>
+
+<!-- ============================================== -->
+<!-- МОДАЛКА ПРОСМОТРА                              -->
+<!-- ============================================== -->
+<div id="diary-view-modal" class="modal-overlay">
+    <div class="modal-window" style="max-width: 640px;">
+        <button id="diary-view-close" class="modal-close-btn">✕</button>
+        <div id="diary-view-body">
+            <!-- заполняется через JS -->
+        </div>
+    </div>
+</div>
+
+<!-- ============================================== -->
+<!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ                            -->
+<!-- ============================================== -->
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+    import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
+    import { getAuth } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBQGoZnd5wzP-MtWG6Ck3C21eKMzSETegk",
+        authDomain: "mygamesite-1b296.firebaseapp.com",
+        projectId: "mygamesite-1b296",
+        storageBucket: "mygamesite-1b296.firebasestorage.app",
+        messagingSenderId: "441398229161",
+        appId: "1:441398229161:web:63858bfac2c949577851b8",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    window.db = getFirestore(app);
+    window.auth = getAuth(app);
+    window.firebaseReady = true;
+    console.log('✅ Firebase подключен (gaming_diary)');
+</script>
+
+<script src="js/script.js"></script>
+<script src="js/diary.js"></script>
+
+<!-- ============================================== -->
+<!-- МОДАЛКА АУТЕНТИФИКАЦИИ (нужна для входа)       -->
+<!-- ============================================== -->
+<div id="auth-modal" class="modal-overlay">
+    <div class="modal-window">
+        <button id="modal-close" class="modal-close-btn">✕</button>
+        <h2>🔐 Добро пожаловать!</h2>
+
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">Вход</button>
+            <button class="auth-tab" data-tab="register">Регистрация</button>
+        </div>
+
+        <form id="login-form" class="auth-form active">
+            <div class="form-group">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" required placeholder="example@mail.com">
+            </div>
+            <div class="form-group">
+                <label for="login-password">Пароль:</label>
+                <input type="password" id="login-password" required placeholder="Введите пароль">
+            </div>
+            <button type="submit" class="auth-btn">Войти</button>
+        </form>
+
+        <form id="register-form" class="auth-form">
+            <div class="form-group">
+                <label for="register-name">Имя:</label>
+                <input type="text" id="register-name" required placeholder="Ваше имя">
+            </div>
+            <div class="form-group">
+                <label for="register-email">Email:</label>
+                <input type="email" id="register-email" required placeholder="example@mail.com">
+            </div>
+            <div class="form-group">
+                <label for="register-password">Пароль (мин. 6 символов):</label>
+                <input type="password" id="register-password" required placeholder="Придумайте пароль">
+            </div>
+            <button type="submit" class="auth-btn">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
